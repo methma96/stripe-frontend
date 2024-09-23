@@ -1,0 +1,20 @@
+<div style="text-align:center">
+  <h2>Hosted Checkout Example</h2>
+
+  <div *ngFor="let product of products" style="border:1px solid #ddd; padding:10px; margin:10px;">
+    <img [src]="product.imageUrl" alt="{{ product.name }}" style="width: 100px;">
+    <div>
+      <h3>{{ product.name }}</h3>
+      <p>{{ product.description }}</p>
+      <p>Quantity: {{ product.quantity }}</p>
+      <p style="color: blue;">${{ product.price }}</p>
+    </div>
+  </div>
+
+  <h3>Total <span style="color: blue;">${{ totalAmount }}</span></h3>
+
+  <button (click)="payNow()" style="padding:10px 20px; background-color: green; color: white; border: none; cursor: pointer;">
+    Pay Now
+  </button>
+</div>
+
