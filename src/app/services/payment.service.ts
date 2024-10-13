@@ -7,12 +7,29 @@ import { Observable } from 'rxjs/internal/Observable';
 })
 export class PaymentService {
 
-  private baseUrl = 'http://localhost:8080/api/payments'; // Replace with your backend URL
+  private baseUrl = 'http://localhost:8080'; // Replace with your backend URL
 
   constructor(private http: HttpClient) { }
 
-  createPaymentLink(): Observable<any> {
-    // This will call the backend's createPaymentLink method
-    return this.http.post(`${this.baseUrl}/create-payment-link`, {});
+  // Method to create payment link with required parameters
+  createPaymentLink(priceId: string, serviceProviderId: string, amount: number, name:string): Observable<any> {
+    const paymentLinkRequest = {
+      priceId: priceId,
+      serviceProviderId: serviceProviderId,
+      amount: amount,
+      jobName:name
+    };
+
+    return this.http.post<any>(`${this.baseUrl}/api/payments/create-payment-link`, paymentLinkRequest);
   }
+
+   // Fetch services from the backend
+   getServices(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.baseUrl}/api/services/`);
+  }
+
+  verifyPayment(sessionId: string): Observable<any> {
+    return this.http.post<any>(`${this.baseUrl}/api/payments/verify`, { sessionId });
+  }
+
 }

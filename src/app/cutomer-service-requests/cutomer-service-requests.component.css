@@ -1,0 +1,124 @@
+/* jobs.component.css */
+
+/* Styling for the container */
+.container {
+    max-width: 100%;
+    padding: 20px;
+    margin: 0 auto;
+    font-family: 'Inter', sans-serif;
+}
+
+/* Heading */
+.job-list-heading {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-align: left;
+    color: #333;
+}
+
+/* Responsive table */
+.table-responsive {
+    overflow-x: auto;
+    width: 100%;
+}
+
+/* Table styling */
+.job-list-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    border-spacing: 0;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.job-list-table thead th {
+    background-color: #f8f9fa;
+    color: #495057;
+    padding: 12px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.job-list-table tbody tr {
+    transition: background-color 0.2s;
+}
+
+.job-list-table tbody tr:hover {
+    background-color: #f1f3f5;
+}
+
+.job-list-table td {
+    padding: 15px;
+    vertical-align: middle;
+    font-size: 14px;
+    color: #343a40;
+}
+
+/* Button Styling */
+.btn.action-btn {
+    padding: 8px 16px;
+    font-size: 14px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn.action-btn:disabled {
+    background-color: #c0c0c0;
+    cursor: not-allowed;
+}
+
+.btn.action-btn:hover:not(:disabled) {
+    background-color: #0056b3;
+}
+
+/* Job information with image */
+.job-info {
+    display: flex;
+    align-items: center;
+}
+
+.job-thumbnail {
+    width: 40px;
+    height: 40px;
+    border-radius: 6px;
+    margin-right: 10px;
+    object-fit: cover;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive table for mobile view */
+@media (max-width: 768px) {
+    .job-list-table thead {
+        display: none;
+    }
+
+    .job-list-table tbody tr {
+        display: block;
+        margin-bottom: 10px;
+        border-bottom: 1px solid #e9ecef;
+    }
+
+    .job-list-table tbody td {
+        display: block;
+        padding: 10px;
+        text-align: right;
+        position: relative;
+    }
+
+    .job-list-table tbody td::before {
+        content: attr(data-label);
+        position: absolute;
+        left: 10px;
+        top: 10px;
+        font-weight: bold;
+        color: #495057;
+    }
+}

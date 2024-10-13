@@ -1,0 +1,49 @@
+<!-- jobs.component.html -->
+<div class="container">
+  <h2 class="job-list-heading">Job List</h2>
+
+  <div class="table-responsive">
+    <table class="table job-list-table">
+      <thead>
+        <tr>
+          <th>Job Name</th>
+          <th>Amount</th>
+          <th>Job Status</th>
+          <th>Payment Status</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let job of jobs">
+          <td>
+            <div class="job-info">
+              <img
+                src="{{ job.imageUrl }}"
+                alt="{{ job.name }}"
+                class="job-thumbnail"
+              />
+              <span>{{ job.name }}</span>
+            </div>
+          </td>
+          <td>{{ job.amount }} USD</td>
+          <td>{{ job.status }}</td>
+          <td>{{ job.paymentStatus }}</td>
+          <td>
+            <!-- Button enabled only if paymentStatus is 'ESCROW' and status is 'COMPLETED' -->
+            <button
+              class="btn action-btn"
+              [disabled]="
+                !(
+                  job.paymentStatus === 'ESCROW' && job.status === 'COMPLETED'
+                ) || approvedJobs.includes(job.id)
+              "
+              (click)="triggerAction(job.id)"
+            >
+              {{ approvedJobs.includes(job.id) ? "Approved" : "Approve" }}
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

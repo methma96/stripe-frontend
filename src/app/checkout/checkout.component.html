@@ -1,20 +1,30 @@
-<div style="text-align:center">
-  <h2>Hosted Checkout Example</h2>
+<div class="checkout-container">
+  <div class="checkout">
+    <h2>Select a Service</h2>
 
-  <div *ngFor="let product of products" style="border:1px solid #ddd; padding:10px; margin:10px;">
-    <img [src]="product.imageUrl" alt="{{ product.name }}" style="width: 100px;">
-    <div>
-      <h3>{{ product.name }}</h3>
-      <p>{{ product.description }}</p>
-      <p>Quantity: {{ product.quantity }}</p>
-      <p style="color: blue;">${{ product.price }}</p>
-    </div>
+    <form [formGroup]="checkoutForm">
+      <div *ngIf="services.length > 0">
+        <!-- Only show the select if services are available -->
+        <label for="service">Service</label>
+        <select
+          id="service"
+          formControlName="selectedServiceId"
+          (change)="onServiceChange($event)"
+        >
+          <option value="" disabled>Select a service</option>
+          <option *ngFor="let service of services" [value]="service.id">
+            {{ service.name }} - ${{ service.amount }}
+          </option>
+        </select>
+      </div>
+    </form>
+
+    <button class="pay-now-button" (click)="payNow()">Pay Now</button>
+   
   </div>
 
-  <h3>Total <span style="color: blue;">${{ totalAmount }}</span></h3>
-
-  <button (click)="payNow()" style="padding:10px 20px; background-color: green; color: white; border: none; cursor: pointer;">
-    Pay Now
-  </button>
+  
+  <div id="checkout">
+    <!-- Checkout will insert the payment form here -->
+  </div>
 </div>
-

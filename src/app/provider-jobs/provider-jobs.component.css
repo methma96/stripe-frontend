@@ -1,0 +1,95 @@
+/* Container Styling */
+.container {
+  padding: 20px;
+  max-width: 1000px; /* Ensures it doesn't stretch too wide on large screens */
+  margin: 0 auto; /* Centers the content horizontally */
+}
+
+/* Job List Heading */
+.job-list-heading {
+  font-size: 1.8rem;
+  font-weight: bold;
+  text-align: center; /* Center the heading */
+  margin-bottom: 20px;
+}
+
+/* Table Styling */
+.table-responsive {
+  margin-top: 20px;
+  overflow-x: auto;
+}
+
+table.job-list-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+/* Table Headers */
+thead th {
+  background-color: #f9f9f9;
+  padding: 10px;
+  font-weight: bold;
+  text-align: left;
+}
+
+/* Table Rows */
+tbody td {
+  padding: 15px;
+  border-bottom: 1px solid #ddd;
+  vertical-align: middle;
+}
+
+/* Job Info Styling (Flexbox for Alignment) */
+.job-info {
+  display: flex;
+  align-items: center;
+}
+
+.job-thumbnail {
+  width: 50px;
+  height: 50px;
+  margin-right: 15px;
+  border-radius: 5px;
+}
+
+/* Approve Button */
+.btn.action-btn {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  cursor: pointer;
+  border-radius: 4px;
+  font-size: 1rem;
+  transition: background-color 0.3s;
+}
+
+.btn.action-btn:hover {
+  background-color: #218838;
+}
+
+.btn.action-btn:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+/* Responsive Table on Small Screens */
+@media (max-width: 768px) {
+  .table-responsive {
+    overflow-x: auto;
+  }
+
+  table.job-list-table {
+    font-size: 0.9rem;
+  }
+
+  .job-info span {
+    font-size: 0.9rem;
+  }
+
+  .btn.action-btn {
+    font-size: 0.9rem;
+    padding: 6px 10px;
+  }
+}
