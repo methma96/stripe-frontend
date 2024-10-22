@@ -25,6 +25,7 @@ export class CheckoutComponent implements OnInit {
   clientSecret: string | null = null;
   safeUrl: SafeResourceUrl | undefined;
   stripe: Stripe | null = null;
+  isProcessing : boolean = false;
 
 
   constructor(private paymentService: PaymentService, private fb: FormBuilder, private sanitizer: DomSanitizer) {
@@ -82,6 +83,9 @@ export class CheckoutComponent implements OnInit {
       alert('Please select a service');
       return;
     }
+
+    this.isProcessing = true;  // To show loading UI
+
   
     this.paymentService.createPaymentLink(this.selectedPriceId, this.serviceProviderId, this.amount, this.selectedServiceName).subscribe(
       async (response: any) => {
@@ -94,14 +98,17 @@ export class CheckoutComponent implements OnInit {
           // Mount Checkout
           if(checkout){
           checkout.mount('#checkout');
+          this.isProcessing = false;
           }
           
         } else {
           console.error('No payment URL returned from server');
+          this.isProcessing = false;
         }
       },
       (error: any) => {
         console.error('Error creating payment link:', error);
+        this.isProcessing = false;
       }
     );
 

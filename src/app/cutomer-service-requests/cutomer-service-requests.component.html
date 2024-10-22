@@ -17,11 +17,6 @@
         <tr *ngFor="let job of jobs">
           <td>
             <div class="job-info">
-              <img
-                src="{{ job.imageUrl }}"
-                alt="{{ job.name }}"
-                class="job-thumbnail"
-              />
               <span>{{ job.name }}</span>
             </div>
           </td>
@@ -39,7 +34,7 @@
               "
               (click)="triggerAction(job.id)"
             >
-              {{ approvedJobs.includes(job.id) ? "Approved" : "Approve" }}
+              {{ approvedJobs.includes(job.id) ? "Approved" : "Approve Payment" }}
             </button>
           </td>
         </tr>

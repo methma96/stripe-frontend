@@ -19,7 +19,12 @@
       </div>
     </form>
 
-    <button class="pay-now-button" (click)="payNow()">Pay Now</button>
+    <button class="pay-now-button" (click)="payNow()" [disabled]="isProcessing">Pay Now</button>
+
+    <div *ngIf="isProcessing" class="loading">
+      Payment is being processed, please wait...
+    </div>
+    
    
   </div>
 
