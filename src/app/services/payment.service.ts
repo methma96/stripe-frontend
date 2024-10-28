@@ -12,15 +12,27 @@ export class PaymentService {
   constructor(private http: HttpClient) { }
 
   // Method to create payment link with required parameters
-  createPaymentLink(priceId: string, serviceProviderId: string, amount: number, name:string): Observable<any> {
+  createPaymentLink(priceId: string, serviceProviderId: string, amount: number, name:string, currency:string): Observable<any> {
     const paymentLinkRequest = {
       priceId: priceId,
       serviceProviderId: serviceProviderId,
       amount: amount,
-      jobName:name
+      jobName:name,
+      currency:currency
     };
 
     return this.http.post<any>(`${this.baseUrl}/api/payments/create-payment-link`, paymentLinkRequest);
+  }
+
+  // Method to create payment link with required parameters
+  createPaymentAccount(email: string, countryCode: string, jobId: string | null): Observable<any> {
+    const connectAccountRequest = {
+      email: email,
+      countryCode: countryCode,
+      jobId: jobId
+    };
+
+    return this.http.post<any>(`${this.baseUrl}/api/user/create-connected-account`, connectAccountRequest);
   }
 
    // Fetch services from the backend
@@ -30,6 +42,10 @@ export class PaymentService {
 
   verifyPayment(sessionId: string): Observable<any> {
     return this.http.post<any>(`${this.baseUrl}/api/payments/verify`, { sessionId });
+  }
+
+  refundPayment(sessionId: string): Observable<any> {
+    return this.http.post<any>(`${this.baseUrl}/api/payments/refund`, { sessionId });
   }
 
 }

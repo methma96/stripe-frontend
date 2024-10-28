@@ -26,6 +26,7 @@ export class CheckoutComponent implements OnInit {
   safeUrl: SafeResourceUrl | undefined;
   stripe: Stripe | null = null;
   isProcessing : boolean = false;
+  currency ='';
 
 
   constructor(private paymentService: PaymentService, private fb: FormBuilder, private sanitizer: DomSanitizer) {
@@ -59,6 +60,7 @@ export class CheckoutComponent implements OnInit {
       this.selectedServiceName=selectedService.name;
       this.amount=selectedService.amount;
       this.serviceProviderId=selectedService.serviceProviderID;
+      this.currency=selectedService.currency;
     }
   }
   
@@ -76,6 +78,7 @@ export class CheckoutComponent implements OnInit {
       this.selectedServiceName=selectedService.name;
       this.amount=selectedService.amount;
       this.serviceProviderId=selectedService.serviceProviderID;
+      this.currency=selectedService.currency;
     }
 
   
@@ -87,7 +90,7 @@ export class CheckoutComponent implements OnInit {
     this.isProcessing = true;  // To show loading UI
 
   
-    this.paymentService.createPaymentLink(this.selectedPriceId, this.serviceProviderId, this.amount, this.selectedServiceName).subscribe(
+    this.paymentService.createPaymentLink(this.selectedPriceId, this.serviceProviderId, this.amount, this.selectedServiceName,this.currency).subscribe(
       async (response: any) => {
         // Assuming the response contains the payment link URL
         if (response && response.clientSecret) {

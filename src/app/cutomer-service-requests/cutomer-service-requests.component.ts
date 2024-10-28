@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { catchError, of } from 'rxjs';
 
 @Component({
@@ -14,7 +15,7 @@ export class CutomerServiceRequestsComponent implements OnInit {
 
   jobs: any; // Array to hold job data
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,private router: Router) { }
 
   ngOnInit(): void {
     this.fetchJobs(0);
@@ -34,6 +35,9 @@ export class CutomerServiceRequestsComponent implements OnInit {
 }
 
 approvedJobs: string[] = [];
+refundedJobs: string[] = [];
+disputedJobs: string[] = [];
+
 
 triggerAction(jobId: string): void {
   // Call your backend API with the job ID
@@ -53,6 +57,26 @@ triggerAction(jobId: string): void {
     // You can add further actions here, such as refreshing the job list
     this.refreshJobs();
   });
+}
+
+refundPayment(jobId: string): void {
+  // Logic for refunding payment
+      // Navigate to ConnectedAccountPageComponent with jobId as a query parameter
+      if (!this.refundedJobs.includes(jobId)) {
+        this.refundedJobs.push(jobId);
+        console.log(`Job ${jobId} approved.`);
+        this.router.navigate(['/create-account'], { queryParams: { jobId } });
+      }
+}
+
+disputePayment(jobId: string){
+  if (!this.disputedJobs.includes(jobId)) {
+    this.disputedJobs.push(jobId);
+    console.log(`Job ${jobId} approved.`);
+    this.router.navigate(['/create-account'], { queryParams: { jobId } });
+  }
+
+
 }
 
 refreshJobs(): void {

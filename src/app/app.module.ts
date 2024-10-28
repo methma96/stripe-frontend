@@ -9,6 +9,8 @@ import { CommonModule } from '@angular/common';
 import { CutomerServiceRequestsComponent } from './cutomer-service-requests/cutomer-service-requests.component';
 import { JobService } from './services/job.service';
 import { ProviderJobsComponent } from './provider-jobs/provider-jobs.component';
+import { ConnectedAccountPageComponent } from './connected-account-page/connected-account-page.component';
+
 
 
 
@@ -17,14 +19,16 @@ import { ProviderJobsComponent } from './provider-jobs/provider-jobs.component';
     AppComponent,
     CheckoutComponent,
     CutomerServiceRequestsComponent,
-    ProviderJobsComponent
+    ProviderJobsComponent,
+    ConnectedAccountPageComponent
   ],
   imports: [
     BrowserModule,
     CommonModule,
     HttpClientModule,
     ReactiveFormsModule, 
-    FormsModule  // <-- Ensure FormsModule is imported here
+    FormsModule,
+    // <-- Ensure FormsModule is imported here
   ],
   providers: [PaymentService,JobService],  // Add PaymentService if it's not added already
   bootstrap: [AppComponent]
