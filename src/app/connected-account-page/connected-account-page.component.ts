@@ -16,18 +16,60 @@ export class ConnectedAccountPageComponent implements OnInit{
   jobId: string | null = null;
 
   countries = [
-    { name: 'United States', code: 'US' },
-    { name: 'Canada', code: 'CA' },
-    { name: 'United Kingdom', code: 'UK' },
+   
     { name: 'Australia', code: 'AU' },
-    { name: 'India', code: 'IN' }
+    { name: 'Austria', code: 'AT' },
+    { name: 'Belgium', code: 'BE' },
+    { name: 'Brazil', code: 'BR' },
+    { name: 'Bulgaria', code: 'BG' },
+    { name: 'Canada', code: 'CA' },
+    { name: 'Croatia', code: 'HR' },
+    { name: 'Cyprus', code: 'CY' },
+    { name: 'Czech Republic', code: 'CZ' },
+    { name: 'Denmark', code: 'DK' },
+    { name: 'Estonia', code: 'EE' },
+    { name: 'Finland', code: 'FI' },
+    { name: 'France', code: 'FR' },
+    { name: 'Germany', code: 'DE' },
+    { name: 'Gibraltar', code: 'GI' },
+    { name: 'Greece', code: 'GR' },
+    { name: 'Hong Kong', code: 'HK' },
+    { name: 'Hungary', code: 'HU' },
+    { name: 'India', code: 'IN' },
+    { name: 'Indonesia', code: 'ID' },
+    { name: 'Ireland', code: 'IE' },
+    { name: 'Italy', code: 'IT' },
+    { name: 'Japan', code: 'JP' },
+    { name: 'Latvia', code: 'LV' },
+    { name: 'Liechtenstein', code: 'LI' },
+    { name: 'Lithuania', code: 'LT' },
+    { name: 'Luxembourg', code: 'LU' },
+    { name: 'Malaysia', code: 'MY' },
+    { name: 'Malta', code: 'MT' },
+    { name: 'Mexico ', code: 'MX' },
+    { name: 'Netherlands', code: 'NL' },
+    { name: 'New Zealand', code: 'NZ' },
+    { name: 'Norway', code: 'NO' },
+    { name: 'Poland', code: 'PL' },
+    { name: 'Portugal', code: 'PT' },
+    { name: 'Romania', code: 'RO' },
+    { name: 'Singapore', code: 'SG' },
+    { name: 'Slovakia', code: 'SK' },
+    { name: 'Slovenia', code: 'SI' },
+    { name: 'Spain', code: 'ES' },
+    { name: 'Sweden', code: 'SE' },
+    { name: 'Switzerland', code: 'CH' },
+    { name: 'Thailand', code: 'TH' },
+    { name: 'United Arab Emirates', code: 'AE' },
+    { name: 'United Kingdom', code: 'GB' },
+    { name: 'United States', code: 'US' }
     // Add more countries as needed
   ];
 
   constructor(private fb: FormBuilder,private paymentService: PaymentService, private route: ActivatedRoute) {
     this.accountForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
-      country: ['', Validators.required]
+      name: ['', Validators.required]
     });
   }
 
@@ -41,9 +83,9 @@ export class ConnectedAccountPageComponent implements OnInit{
 
   onSubmit(): void {
     if (this.accountForm.valid) {
-      const { email, country } = this.accountForm.value;
+      const { email, name } = this.accountForm.value;
 
-      this.paymentService.createPaymentAccount(email, country, this.jobId).subscribe(
+      this.paymentService.createPaymentAccount(email, name, this.jobId).subscribe(
         response => {
           console.log('Account created successfully:', response);
           
