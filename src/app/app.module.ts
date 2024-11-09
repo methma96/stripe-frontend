@@ -10,6 +10,7 @@ import { CutomerServiceRequestsComponent } from './cutomer-service-requests/cuto
 import { JobService } from './services/job.service';
 import { ProviderJobsComponent } from './provider-jobs/provider-jobs.component';
 import { ConnectedAccountPageComponent } from './connected-account-page/connected-account-page.component';
+import { AccountOnboardingComponent } from './account-onboarding/account-onboarding.component';
 
 
 
@@ -20,7 +21,8 @@ import { ConnectedAccountPageComponent } from './connected-account-page/connecte
     CheckoutComponent,
     CutomerServiceRequestsComponent,
     ProviderJobsComponent,
-    ConnectedAccountPageComponent
+    ConnectedAccountPageComponent,
+    AccountOnboardingComponent
   ],
   imports: [
     BrowserModule,

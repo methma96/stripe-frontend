@@ -13,7 +13,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class ConnectedAccountPageComponent implements OnInit{
   accountForm: FormGroup;
-  jobId: string | null = null;
+
 
   countries = [
    
@@ -69,29 +69,29 @@ export class ConnectedAccountPageComponent implements OnInit{
   constructor(private fb: FormBuilder,private paymentService: PaymentService, private route: ActivatedRoute) {
     this.accountForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
-      name: ['', Validators.required]
+      country: ['', Validators.required],
+      currency: ['', Validators.required],
+      accountHolderName: ['', Validators.required],
+      accountNumber: ['', Validators.required],
+      routingNumber: ['', Validators.required],
     });
   }
 
   ngOnInit(): void {
-    this.route.queryParams.subscribe(params => {
-      this.jobId = params['jobId'];
-      console.log(`Received job ID: ${this.jobId}`);
-      // Additional logic can go here, like loading data related to the job ID
-    });
+  
   }
 
   onSubmit(): void {
     if (this.accountForm.valid) {
-      const { email, name } = this.accountForm.value;
+      const { email, country, currency, accountHolderName, accountNumber, routingNumber  } = this.accountForm.value;
 
-      this.paymentService.createPaymentAccount(email, name, this.jobId).subscribe(
+      this.paymentService.createPaymentAccount(email, country.code ,currency ,accountHolderName,  accountNumber, routingNumber).subscribe(
         response => {
           console.log('Account created successfully:', response);
           
           // Check if the response has an accountUrl and redirect
-          if (response.accountUrl) {
-            window.location.href = response.accountUrl; // Redirect to the account URL
+          if (response.accountId) {
+            window.location.href = `http://localhost:4200/onboard?accountId=${response.accountId}`;// Redirect to the account URL
           } else {
             console.error('No account URL returned in the response.');
             // Handle the case where no URL is provided (optional)

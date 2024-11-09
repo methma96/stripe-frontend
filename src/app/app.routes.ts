@@ -4,5 +4,6 @@ import { PaymentSuccessComponent } from './payment-success/payment-success.compo
 import { CutomerServiceRequestsComponent } from './cutomer-service-requests/cutomer-service-requests.component';
 import { ProviderJobsComponent } from './provider-jobs/provider-jobs.component';
 import { ConnectedAccountPageComponent } from './connected-account-page/connected-account-page.component';
+import { AccountOnboardingComponent } from './account-onboarding/account-onboarding.component';
 
-export const routes: Routes = [ { path: 'checkout', component: CheckoutComponent }, { path: 'return', component: PaymentSuccessComponent }, { path: 'customer-service-requests', component: CutomerServiceRequestsComponent }, { path: 'provider-job-requests', component: ProviderJobsComponent },{ path: 'create-account', component: ConnectedAccountPageComponent }];
+export const routes: Routes = [ { path: 'checkout', component: CheckoutComponent }, { path: 'return', component: PaymentSuccessComponent }, { path: 'customer-service-requests', component: CutomerServiceRequestsComponent }, { path: 'provider-job-requests', component: ProviderJobsComponent },{ path: 'create-account', component: ConnectedAccountPageComponent }, { path: 'onboard', component: AccountOnboardingComponent }];

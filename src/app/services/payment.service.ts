@@ -25,11 +25,16 @@ export class PaymentService {
   }
 
   // Method to create payment link with required parameters
-  createPaymentAccount(email: string, countryCode: string, jobId: string | null): Observable<any> {
+  createPaymentAccount(email: string, countryCode: string, currency:string, accountHolderName:string, accountNumber:string,routingNumber:string  ): Observable<any> {
     const connectAccountRequest = {
       email: email,
       countryCode: countryCode,
-      jobId: jobId
+      bankCountry: countryCode,
+      currency:currency,
+      accountHolderName: accountHolderName,
+      accountNumber:accountNumber,
+      routingNumber:routingNumber
+
     };
 
     return this.http.post<any>(`${this.baseUrl}/api/user/create-connected-account`, connectAccountRequest);
@@ -44,8 +49,12 @@ export class PaymentService {
     return this.http.post<any>(`${this.baseUrl}/api/payments/verify`, { sessionId });
   }
 
-  refundPayment(sessionId: string): Observable<any> {
-    return this.http.post<any>(`${this.baseUrl}/api/payments/refund`, { sessionId });
+  refundPayment(jobId: string): Observable<any> {
+    return this.http.post<any>(`${this.baseUrl}/api/payments/refund`, { jobId });
+  }
+
+  disputePayment(jobId: string): Observable<any> {
+    return this.http.post<any>(`${this.baseUrl}/api/payments/refund`, { jobId });
   }
 
 }
