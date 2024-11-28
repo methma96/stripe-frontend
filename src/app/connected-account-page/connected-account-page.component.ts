@@ -83,9 +83,9 @@ export class ConnectedAccountPageComponent implements OnInit{
 
   onSubmit(): void {
     if (this.accountForm.valid) {
-      const { email, country, currency, accountHolderName, accountNumber, routingNumber  } = this.accountForm.value;
+      const { email, serviceName, amount, country, currency, accountHolderName, accountNumber, routingNumber  } = this.accountForm.value;
 
-      this.paymentService.createPaymentAccount(email, country.code ,currency ,accountHolderName,  accountNumber, routingNumber).subscribe(
+      this.paymentService.createPaymentAccount(email, serviceName, amount, country.code ,currency ,accountHolderName,  accountNumber, routingNumber).subscribe(
         response => {
           console.log('Account created successfully:', response);
           

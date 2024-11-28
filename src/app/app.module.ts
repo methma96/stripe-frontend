@@ -11,6 +11,9 @@ import { JobService } from './services/job.service';
 import { ProviderJobsComponent } from './provider-jobs/provider-jobs.component';
 import { ConnectedAccountPageComponent } from './connected-account-page/connected-account-page.component';
 import { AccountOnboardingComponent } from './account-onboarding/account-onboarding.component';
+import { AccountPaymentsComponent } from './account-payments/account-payments.component';
+import { AccountPayoutsComponent } from './account-payouts/account-payouts.component';
+import { AccountDashboardComponent } from './account-dashboard/account-dashboard.component';
 
 
 
@@ -22,7 +25,10 @@ import { AccountOnboardingComponent } from './account-onboarding/account-onboard
     CutomerServiceRequestsComponent,
     ProviderJobsComponent,
     ConnectedAccountPageComponent,
-    AccountOnboardingComponent
+    AccountOnboardingComponent,
+    AccountPaymentsComponent,
+    AccountPayoutsComponent,
+    AccountDashboardComponent
   ],
   imports: [
     BrowserModule,

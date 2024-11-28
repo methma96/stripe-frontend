@@ -50,20 +50,6 @@
             {{ refundedJobs.includes(job.id) ? "refunded" : "Refund" }}
           </button>
           </td>
-
-          <td>
-            <button
-            class="btn action-btn"
-            [disabled]="
-              !(
-                job.paymentStatus === 'SUCCESS' && job.status === 'COMPLETED'
-              ) || disputedJobs.includes(job.id) 
-            "
-            (click)="disputePayment(job.id)"
-          >
-            {{ disputedJobs.includes(job.id) ? "Disputed" : "Dispute" }}
-          </button>
-          </td>
         </tr>
       </tbody>
     </table>

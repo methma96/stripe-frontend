@@ -71,15 +71,7 @@ refundPayment(jobId: string): void {
       }
 }
 
-disputePayment(jobId: string){
-  if (!this.disputedJobs.includes(jobId)) {
-    this.disputedJobs.push(jobId);
-    console.log(`Job ${jobId} approved.`);
-    this.paymentService.disputePayment(jobId);
-  }
 
-
-}
 
 refreshJobs(): void {
   // Optionally refresh the job list after action (add your job fetching logic here)

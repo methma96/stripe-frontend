@@ -25,9 +25,11 @@ export class PaymentService {
   }
 
   // Method to create payment link with required parameters
-  createPaymentAccount(email: string, countryCode: string, currency:string, accountHolderName:string, accountNumber:string,routingNumber:string  ): Observable<any> {
+  createPaymentAccount(email: string, serviceNAme:string, amount:number, countryCode: string, currency:string, accountHolderName:string, accountNumber:string,routingNumber:string  ): Observable<any> {
     const connectAccountRequest = {
       email: email,
+      serviceNAme:serviceNAme,
+      amount : amount,
       countryCode: countryCode,
       bankCountry: countryCode,
       currency:currency,
@@ -53,8 +55,5 @@ export class PaymentService {
     return this.http.post<any>(`${this.baseUrl}/api/payments/refund`, { jobId });
   }
 
-  disputePayment(jobId: string): Observable<any> {
-    return this.http.post<any>(`${this.baseUrl}/api/payments/refund`, { jobId });
-  }
 
 }
