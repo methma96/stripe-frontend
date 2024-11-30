@@ -1,25 +1,24 @@
-<div class="input-buttons-container">
-    <label for="textInput">Enter Account ID:</label>
-    <input
-      id="textInput"
-      type="text"
-      [(ngModel)]="inputText"
-      placeholder="Type something..."
-    />
-  
-    <div class="buttons-container">
-      <button
-        (click)="onButton1Click()"
-        [disabled]="isProcessingButton1"
-      >
-        Load Payments
-      </button>
-      <button
-        (click)="onButton2Click()"
-        [disabled]="isProcessingButton2"
-      >
-        Load Payouts
-      </button>
-    </div>
+<div class="input-buttons-container" [formGroup]="accountForm">
+  <label for="accountId">Enter Account ID:</label>
+  <input
+    id="accountId"
+    type="text"
+    formControlName="accountId"
+    placeholder="Type something..."
+  />
+
+  <div class="buttons-container">
+    <button
+      (click)="onButton1Click()"
+      [disabled]="isProcessingButton1 || accountForm.invalid"
+    >
+      Load Payments
+    </button>
+    <button
+      (click)="onButton2Click()"
+      [disabled]="isProcessingButton2 || accountForm.invalid"
+    >
+      Load Payouts
+    </button>
   </div>
-  
+</div>

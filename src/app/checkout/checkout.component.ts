@@ -17,7 +17,6 @@ export class CheckoutComponent implements OnInit {
  
   checkoutForm: FormGroup;  // Define a FormGroup
   services: any[] = [];      // Array to hold services
-  selectedPriceId='';
   selectedServiceId='';
   amount=0;
   serviceProviderId='';
@@ -56,7 +55,6 @@ export class CheckoutComponent implements OnInit {
     const selectedService = this.services.find(service => service.id === selectedServiceId);
     
     if (selectedService) {
-      this.selectedPriceId = selectedService.priceId; // Assuming each service has a priceId
       this.selectedServiceName=selectedService.name;
       this.amount=selectedService.amount;
       this.serviceProviderId=selectedService.serviceProviderID;
@@ -73,8 +71,7 @@ export class CheckoutComponent implements OnInit {
   async payNow(): Promise<void> {
     const selectedServiceId = this.checkoutForm.get('selectedServiceId')?.value;
     const selectedService = this.services.find(service => service.id === selectedServiceId);
-    if (selectedService) {
-      this.selectedPriceId = selectedService.priceId; // Assuming each service has a priceId.
+    if (selectedService) { // Assuming each service has a priceId.
       this.selectedServiceName=selectedService.name;
       this.amount=selectedService.amount;
       this.serviceProviderId=selectedService.serviceProviderID;
@@ -82,7 +79,8 @@ export class CheckoutComponent implements OnInit {
     }
 
   
-    if (!selectedServiceId || !this.selectedPriceId) {
+    
+    if (!selectedServiceId ) {
       alert('Please select a service');
       return;
     }
@@ -90,7 +88,7 @@ export class CheckoutComponent implements OnInit {
     this.isProcessing = true;  // To show loading UI
 
   
-    this.paymentService.createPaymentLink(this.selectedPriceId, this.serviceProviderId, this.amount, this.selectedServiceName,this.currency).subscribe(
+    this.paymentService.createPaymentLink(this.serviceProviderId, this.amount, this.selectedServiceName,this.currency).subscribe(
       async (response: any) => {
         // Assuming the response contains the payment link URL
         if (response && response.clientSecret) {

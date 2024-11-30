@@ -12,9 +12,8 @@ export class PaymentService {
   constructor(private http: HttpClient) { }
 
   // Method to create payment link with required parameters
-  createPaymentLink(priceId: string, serviceProviderId: string, amount: number, name:string, currency:string): Observable<any> {
+  createPaymentLink( serviceProviderId: string, amount: number, name:string, currency:string): Observable<any> {
     const paymentLinkRequest = {
-      priceId: priceId,
       serviceProviderId: serviceProviderId,
       amount: amount,
       jobName:name,
