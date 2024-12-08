@@ -69,8 +69,7 @@ export class ConnectedAccountPageComponent implements OnInit{
   constructor(private fb: FormBuilder,private paymentService: PaymentService, private route: ActivatedRoute) {
     this.accountForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
-      serviceName: ['', Validators.required],
-      amount: ['', Validators.required],
+     
       
     });
   }
