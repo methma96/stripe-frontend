@@ -1,0 +1,52 @@
+<div class="form-container">
+    <div class="card">
+      <div class="card-header">
+        <h5 class="card-title">Service Details</h5>
+      </div>
+      <div class="card-body">
+        <form [formGroup]="accountForm" (ngSubmit)="onSubmit()">
+          
+      
+          <div class="form-group">
+            <label for="serviceName">Service Name</label>
+            <input
+              id="serviceName"
+              type="text"
+              class="form-input"
+              formControlName="serviceName"
+              placeholder="Enter Service Name"
+            />
+            <div *ngIf="accountForm.get('serviceName')?.invalid && accountForm.get('serviceName')?.touched" class="error-message">
+              Please enter a valid Service Name
+            </div>
+          </div>
+  
+          <div class="form-group">
+            <label for="amount">Service Charge</label>
+            <input
+              id="amount"
+              type="number"
+              class="form-input"
+              formControlName="amount"
+              placeholder="Enter Service Charge"
+            />
+            <div *ngIf="accountForm.get('amount')?.invalid && accountForm.get('amount')?.touched" class="error-message">
+              Please enter a valid Service Charge
+            </div>
+          </div>
+
+          
+  
+          <!-- Submit Button -->
+          <button
+            class="submit-button"
+            type="submit"
+            [disabled]="accountForm.invalid"
+          >
+            Submit
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+  

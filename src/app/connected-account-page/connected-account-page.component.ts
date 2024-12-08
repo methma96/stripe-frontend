@@ -69,11 +69,9 @@ export class ConnectedAccountPageComponent implements OnInit{
   constructor(private fb: FormBuilder,private paymentService: PaymentService, private route: ActivatedRoute) {
     this.accountForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
-      country: ['', Validators.required],
-      currency: ['', Validators.required],
-      accountHolderName: ['', Validators.required],
-      accountNumber: ['', Validators.required],
-      routingNumber: ['', Validators.required],
+      serviceName: ['', Validators.required],
+      amount: ['', Validators.required],
+      
     });
   }
 
@@ -83,9 +81,9 @@ export class ConnectedAccountPageComponent implements OnInit{
 
   onSubmit(): void {
     if (this.accountForm.valid) {
-      const { email, serviceName, amount, country, currency, accountHolderName, accountNumber, routingNumber  } = this.accountForm.value;
+      const { email  } = this.accountForm.value;
 
-      this.paymentService.createPaymentAccount(email, serviceName, amount, country.code ,currency ,accountHolderName,  accountNumber, routingNumber).subscribe(
+      this.paymentService.createPaymentAccount(email).subscribe(
         response => {
           console.log('Account created successfully:', response);
           

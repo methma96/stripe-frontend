@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-account-onboarding',
@@ -8,7 +8,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class AccountOnboardingComponent implements OnInit {
 
-  constructor(private route: ActivatedRoute) {}
+  constructor(private route: ActivatedRoute, private router: Router) {}
 
   accountId: string | null = null;
 
@@ -51,6 +51,10 @@ export class AccountOnboardingComponent implements OnInit {
       const accountOnboarding = stripeConnectInstance.create('account-onboarding');
       accountOnboarding.setOnExit(() => {
         console.log('User exited the onboarding flow');
+          // Redirect to another screen
+          this.router.navigate(['/onboarding-complete'], {
+            queryParams: { accountId: this.accountId }
+          });
       });
 
       const container = document.getElementById("container");

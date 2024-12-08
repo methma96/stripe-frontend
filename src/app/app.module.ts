@@ -14,6 +14,8 @@ import { AccountOnboardingComponent } from './account-onboarding/account-onboard
 import { AccountPaymentsComponent } from './account-payments/account-payments.component';
 import { AccountPayoutsComponent } from './account-payouts/account-payouts.component';
 import { AccountDashboardComponent } from './account-dashboard/account-dashboard.component';
+import { OnboardSuccessComponent } from './onboard-success/onboard-success.component';
+import { ServicePageComponent } from './service-page/service-page.component';
 
 
 
@@ -28,7 +30,9 @@ import { AccountDashboardComponent } from './account-dashboard/account-dashboard
     AccountOnboardingComponent,
     AccountPaymentsComponent,
     AccountPayoutsComponent,
-    AccountDashboardComponent
+    AccountDashboardComponent,
+    OnboardSuccessComponent,
+    ServicePageComponent
   ],
   imports: [
     BrowserModule,
