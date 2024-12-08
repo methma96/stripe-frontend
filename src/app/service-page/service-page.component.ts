@@ -26,7 +26,17 @@ export class ServicePageComponent implements OnInit {
 
   ngOnInit(): void {
   
-    this.accountId = this.route.snapshot.queryParamMap.get('accountId');
+    const rawAccountId = this.route.snapshot.queryParamMap.get('accountId');
+  if (rawAccountId) {
+    try {
+      // Parse the JSON string if necessary
+      const parsed = JSON.parse(rawAccountId);
+      this.accountId = parsed.accountId; // Extract the actual account ID
+    } catch (error) {
+      console.error('Invalid accountId format:', error);
+      this.accountId = rawAccountId; // Fallback if it's not JSON
+    }
+  }
 
   }
 
