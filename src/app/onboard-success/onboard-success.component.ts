@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { PaymentService } from '../services/payment.service';
 
 @Component({
@@ -15,29 +15,23 @@ export class OnboardSuccessComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute, 
-    private paymentService: PaymentService
+    private paymentService: PaymentService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
-      const rawAccountId = this.route.snapshot.queryParamMap.get('accountId');
-      if (rawAccountId) {
-        try {
-          // Parse the JSON string if necessary
-          const parsed = JSON.parse(rawAccountId);
-          this.accountId = parsed.accountId; // Extract the actual account ID
-        } catch (error) {
-          console.error('Invalid accountId format:', error);
-          this.accountId = rawAccountId; // Fallback if it's not JSON
-        }
-      }
+     this.accountId = this.route.snapshot.queryParamMap.get('accountId');
+      
     
       if (this.accountId) {
         // Call your backend to verify the session and update payment status
         this.paymentService.updateData(this.accountId).subscribe(
           (          response) => {
             if (response.accountId) {
-              window.location.href = `http://localhost:4200/service-details?accountId=${this.accountId}`;// Redirect to the account URL
+              this.router.navigate(['/service-details'], {
+                queryParams: { accountId: this.accountId }
+              });
             } else {
               console.error('No account URL returned in the response.');
               // Handle the case where no URL is provided (optional)
