@@ -26,7 +26,7 @@ export class OnboardSuccessComponent implements OnInit {
         this.paymentService.updateData(this.accountId).subscribe(
           (          response) => {
             if (response.accountId) {
-              window.location.href = `http://localhost:4200/onboard?accountId=${response.accountId}`;// Redirect to the account URL
+              window.location.href = `http://localhost:4200/service-details?accountId=${response.accountId}`;// Redirect to the account URL
             } else {
               console.error('No account URL returned in the response.');
               // Handle the case where no URL is provided (optional)
