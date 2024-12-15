@@ -65,7 +65,15 @@ refundPayment(jobId: string): void {
       // Navigate to ConnectedAccountPageComponent with jobId as a query parameter
       if (!this.refundedJobs.includes(jobId)) {
         this.refundedJobs.push(jobId);
-        this.paymentService.refundPayment(jobId);
+        this.paymentService.refundPayment(jobId).subscribe(
+          (response) => {
+            console.log('Refund success:', response);
+          },
+          (error) => {
+            console.error('Refund failed:', error);
+          }
+        );
+        
         console.log(`Job ${jobId} approved.`);
        
       }
